@@ -14,6 +14,7 @@ import (
 	"OpenLinkHub/src/devices"
 	"OpenLinkHub/src/devices/lcd"
 	"OpenLinkHub/src/display"
+	"OpenLinkHub/src/gputint"
 	"OpenLinkHub/src/inputmanager"
 	"OpenLinkHub/src/language"
 	"OpenLinkHub/src/logger"
@@ -155,6 +156,12 @@ func getGpuLoad(w http.ResponseWriter, _ *http.Request) {
 		Status: 1,
 		Data:   systeminfo.GetGPUUtilization(),
 	}
+	resp.Send(w)
+}
+
+// getGpuStorm returns the cached utilization input used by the Storm renderer.
+func getGpuStorm(w http.ResponseWriter, _ *http.Request) {
+	resp := &Response{Code: http.StatusOK, Status: 1, Data: gputint.Status()}
 	resp.Send(w)
 }
 
@@ -2794,6 +2801,7 @@ func setRoutes() http.Handler {
 	handleFunc(r, "/api/gpuTemps", http.MethodGet, getGpuTemperatures)
 	handleFunc(r, "/api/gpuTemp/clean", http.MethodGet, getGpuTemperatureClean)
 	handleFunc(r, "/api/gpuLoad", http.MethodGet, getGpuLoad)
+	handleFunc(r, "/api/gpuStorm", http.MethodGet, getGpuStorm)
 	handleFunc(r, "/api/storageTemp", http.MethodGet, getStorageTemperature)
 	handleFunc(r, "/api/batteryStats", http.MethodGet, getBatteryStats)
 	handleFunc(r, "/api/devices/", http.MethodGet, getDevices)

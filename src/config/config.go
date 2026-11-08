@@ -6,6 +6,7 @@ package config
 
 import (
 	"OpenLinkHub/src/common"
+	"OpenLinkHub/src/gputint"
 	"encoding/json"
 	"os"
 	"os/user"
@@ -46,6 +47,8 @@ type Configuration struct {
 	EnableMotherboard         bool     `json:"enableMotherboard"`
 	MotherboardBiosOnExit     bool     `json:"motherboardBiosOnExit"`
 	MemoryRegisterOverride    []byte   `json:"memoryRegisterOverride"`
+
+	GPUStorm *gputint.Config `json:"gpuStorm,omitempty"`
 }
 
 var (

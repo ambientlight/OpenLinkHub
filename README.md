@@ -14,6 +14,7 @@ Manage RGB lighting, fan speeds, system metrics, as well as keyboards, mice, and
 - Manage keyboards, mice and headsets
 - Support for DDR4 and DDR5 memory
 - Custom fan profiles, temperature sensors and RGB editor
+- [GPU utilization tinting for Storm](docs/gpu-storm.md) (optional, custom branch)
 - If you need system tray menu - https://github.com/jurkovic-nikola/openlinkhub-tray
 - XENEON EDGE App - https://github.com/jurkovic-nikola/openlinkhub-xeneon
 - [Supported device list](docs/supported-devices.md)

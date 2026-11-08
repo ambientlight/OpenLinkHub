@@ -1,6 +1,7 @@
 package rgb
 
 import (
+	"OpenLinkHub/src/gputint"
 	"math/rand"
 )
 
@@ -16,9 +17,11 @@ func stormColorEffect(c1, c2 *Color, bts float64) (uint8, uint8, uint8) {
 
 // Storm will run RGB function
 func (r *ActiveRGB) Storm() {
+	base := *r.RGBStartColor
+	base.Red, base.Green, base.Blue = gputint.Color(base.Red, base.Green, base.Blue)
 	buf := map[int][]byte{}
 	for i := 0; i < r.LightChannels; i++ {
-		red, green, blue := stormColorEffect(r.RGBStartColor, r.RGBEndColor, r.RGBStartColor.Brightness)
+		red, green, blue := stormColorEffect(&base, r.RGBEndColor, r.RGBStartColor.Brightness)
 		if len(r.Buffer) > 0 {
 			r.Buffer[i] = red
 			r.Buffer[i+r.ColorOffset] = green
